@@ -4,7 +4,7 @@ description: Run one round of the Chicago Bulletin build loop — read the funne
 
 Run the Chicago Bulletin build loop. The repo and the DB carry all state — do not
 ask the user for context. Arguments (optional): $ARGUMENTS
-(e.g. "3 rounds", "focus Pilsen and Logan Square", "just score", a pasted list of
+(e.g. "full", "3 rounds", "focus Pilsen and Logan Square", "just score", a pasted list of
 leads, or a path to a file of them).
 
 ## 0. A list of leads overrides the funnel
@@ -15,6 +15,23 @@ funnel says. Split it into batches of ~20 and spawn one **Tej** per batch in
 parallel (charter template: "Seed from a list of leads"). Then continue the round
 from step 3 (re-run the funnel, report, write the ledger entry). The next round's funnel will route
 the new source leads to Scout.
+
+## 0b. `full` — one source, end to end
+If the arguments say `full` (or "full loop"), the goal is depth, not breadth:
+get at least ONE source from lead to scored events on the site, then stop.
+Work thin slices instead of draining each queue:
+- **seed** (empty DB only): ONE Tej spawn, ~15 civic leads in one neighborhood.
+- **scout**: ONE sweep of ~10 sources, the likeliest GOs first (a known
+  platform — WordPress/Tribe, Eventbrite, iCal, Squarespace — over bespoke sites).
+- **build**: ONE Max spawn on the single most promising GO (or 2–3 on the same
+  platform), then `ingest.py --days 10`.
+- **vet / score / export**: as usual, but only for what this run produced.
+
+Loop rounds (steps 1–3, one LEDGER entry for the whole run) until the funnel
+shows `scored` > 0 for events from a source built in this run and `export.py`
+has run. Cap: 8 rounds. If a stage dead-ends (every scouted source NO-GO, a
+build that won't pass its probe), take the next candidate in that stage rather
+than moving on. If the cap hits first, stop and report exactly where it stuck.
 
 ## 1. Orient
 ```
@@ -62,4 +79,4 @@ everything else defaults to Opus.
 ## 4. Stop or continue
 Each round spends real tokens. Stop after ONE round and report, unless the
 arguments asked for more rounds — then loop back to step 1 until those rounds are
-done or the funnel says nothing is queued.
+done or the funnel says nothing is queued. `full` loops by its own rule (step 0b).
