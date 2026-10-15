@@ -7,5 +7,6 @@
   "db_file": "chicago.db",
   "site": "http://localhost:8000",
   "site_name": "The Chicago Bulletin",
-  "hoods_geojson": "docs/hoods.geojson"
+  "hoods_geojson": "docs/hoods.geojson",
+  "contact": ""
 }

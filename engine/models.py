@@ -39,6 +39,7 @@ BBOX = _city["bbox"]                   # the focus band (sanity signal, never a 
 SITE = _city["site"]                   # canonical origin, no trailing slash
 SITE_NAME = _city["site_name"]
 HOODS_PATH = _ROOT / _city["hoods_geojson"]
+CONTACT = _city.get("contact", "")      # your email, sent to Nominatim (optional)
 
 # The DB lives OUTSIDE the repo so every checkout/worktree (and every agent
 # session) shares ONE copy — per-checkout copies fork silently. BULLETIN_DB

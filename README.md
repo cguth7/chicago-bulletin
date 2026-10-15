@@ -46,6 +46,10 @@ empty site export, and prints the funnel. The funnel should say
 The DB lives **outside** the repo on purpose: every checkout and agent session
 shares one copy. To put it somewhere else, edit `data_dir` in `city.json`.
 
+Also put your email in `contact` in `city.json`. The geocoder (OpenStreetMap's
+Nominatim) sends it so OSM can reach you instead of blocking you. It's optional
+but polite.
+
 ## 2. Build the database (this is where your tokens go)
 
 ```sh
@@ -148,7 +152,7 @@ The site is static, so anything that serves a folder will work. With GitHub Page
 ## Where things are
 
 ```
-city.json              the city: name, timezone, focus bbox, data dir, site URL
+city.json              the city: name, timezone, focus bbox, data dir, site URL, contact
 setup.sh / refresh.sh  install once / refresh daily
 LEDGER.md              what each round did and decided (/next reads + writes it)
 engine/                the engine (agents work here — see engine/CLAUDE.md)

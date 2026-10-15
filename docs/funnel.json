@@ -1,0 +1,105 @@
+{
+ "city": "Chicago",
+ "generated": "2026-10-15T09:44:03",
+ "db": "~/chicago-bulletin-data/chicago.db",
+ "totals": {
+  "venues": 87,
+  "groups": 27,
+  "monitored": 0,
+  "sources": 91,
+  "built": 0,
+  "healthy": 0,
+  "no_go": 0,
+  "events_window": 0,
+  "visible": 0,
+  "hidden": 0,
+  "scored": 0,
+  "site_generated": "2026-10-15T09:44:03.807606"
+ },
+ "queues": [
+  {
+   "stage": "find a calendar",
+   "who": "tej",
+   "n": 9,
+   "what": "venues/groups with no source lead yet",
+   "examples": [
+    "Harrison Park",
+    "Dvorak Park",
+    "La Villita Park",
+    "Palmisano Park",
+    "McGuane Park",
+    "Daley Plaza",
+    "Myopic Books",
+    "Rumble Arts Center"
+   ]
+  },
+  {
+   "stage": "scout",
+   "who": "scout",
+   "n": 91,
+   "what": "source leads with no GO/NO-GO verdict",
+   "examples": [
+    "CPL Lozano Branch Events",
+    "CPL Toman Branch Events",
+    "CPL Chinatown Branch Events",
+    "CPL Daley Bridgeport Branch Events",
+    "CPL Blackstone Branch Events",
+    "CPL Coleman Branch Events",
+    "National Museum of Mexican Art Events",
+    "Thalia Hall Shows"
+   ]
+  },
+  {
+   "stage": "build",
+   "who": "max",
+   "n": 0,
+   "what": "GO sources not yet built",
+   "examples": []
+  },
+  {
+   "stage": "repair",
+   "who": "steward",
+   "n": 0,
+   "what": "built sources whose last probe wasn't healthy",
+   "examples": []
+  },
+  {
+   "stage": "vet",
+   "who": "tej",
+   "n": 0,
+   "what": "aggregator-discovered venues/groups waiting for a yes/no",
+   "examples": []
+  },
+  {
+   "stage": "score",
+   "who": "rater",
+   "n": 0,
+   "what": "visible events in the next 7 days with no score",
+   "examples": []
+  },
+  {
+   "stage": "export",
+   "who": "export.py",
+   "n": 0,
+   "what": "docs/data.json is older than today or than the last pull",
+   "examples": []
+  }
+ ],
+ "bottleneck": "scout",
+ "next": {
+  "stage": "scout",
+  "who": "scout",
+  "n": 91,
+  "what": "source leads with no GO/NO-GO verdict",
+  "examples": [
+   "CPL Lozano Branch Events",
+   "CPL Toman Branch Events",
+   "CPL Chinatown Branch Events",
+   "CPL Daley Bridgeport Branch Events",
+   "CPL Blackstone Branch Events",
+   "CPL Coleman Branch Events",
+   "National Museum of Mexican Art Events",
+   "Thalia Hall Shows"
+  ]
+ }
+}

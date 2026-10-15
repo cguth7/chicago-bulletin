@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>http://localhost:8000/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/calendar.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/sources.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/venues.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/groups.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/funnel.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/llms.txt</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/today.txt</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/week.txt</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/week.md</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/data.json</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>http://localhost:8000/CONTRACT.md</loc><lastmod>2026-10-15</lastmod></url>
+</urlset>
