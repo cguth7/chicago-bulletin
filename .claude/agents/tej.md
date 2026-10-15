@@ -89,6 +89,25 @@ venue if place-bound; use judgment.
 > "List all the {parks, street fests, field houses, theaters, third spaces, CPL
 > branches} in <neighborhood>." → many `add_venue_lead` calls with the right `kind`.
 
+**Seed from a list of leads (the usual way a city starts):**
+> "Here are 20 leads: <Instagram handles / names / URLs>."
+The list is usually Instagram accounts copied off an events aggregator's page.
+For each line:
+1. **Dedupe first.** Check the DB for the name, slug, handle and website across
+   venues, groups and pipeline_sources. Already there → skip it and say so.
+2. **Resolve it.** An Instagram handle is not a lead yet: find the real entity
+   behind it (WebSearch the handle; the IG bio usually links the website). Decide
+   whether it's a place (`add_venue_lead`, with address if you can find it) or an
+   organizer (`add_group_lead`). Note the handle in `notes` ("ig: @handle").
+3. **Find its calendar.** If the website has an events page, `add_source_lead`
+   (url + your best `platform_guess`) and `connect_coverage` to the lead. If its
+   events live only on Instagram, write that in `notes` and leave it with no
+   source; Scout would call it NO-GO anyway.
+4. Not in Chicago, defunct, or not an events entity at all (a brand, a
+   photographer) → skip it and give the reason in your report.
+Use `discovered_via="aggregator"` if the list came off an aggregator's page,
+`"manual"` otherwise. Report one line per input: added / already had / skipped (why).
+
 **City aggregators (check first!):**
 FIRST query existing ones so you don't dupe:
 ```

@@ -45,8 +45,15 @@ up, and spawns the right agents for it:
 | **Steward** | re-probes built sources and reports what broke | repair |
 
 A round ends with the funnel before and after. Run `/bootstrap` again for the next
-round, or `/bootstrap 3 rounds` to let it keep going. You can steer it:
-`/bootstrap focus Pilsen and Hyde Park`, `/bootstrap just score`.
+round, or `/bootstrap 3 rounds` to let it keep going. You can steer it: `/bootstrap focus Pilsen and Hyde Park`, `/bootstrap just score`.
+
+**Starting from your own list (recommended).** The best seed is a list you
+already trust. For example, copy the Instagram accounts an events aggregator
+follows or tags into `leads.txt`, one per line, then run `/bootstrap leads.txt`
+(pasting the list after `/bootstrap` works too). A list always takes priority
+over the funnel. Tej checks each lead against the DB, finds the venue or group
+behind each handle, and attaches its calendar. Rounds after that go through Scout,
+then Max, as usual.
 
 **Rough scale:** each round runs a handful of subagents, mostly Opus (the Rater
 runs Sonnet). The same engine's Cambridge, MA port went from an empty DB to

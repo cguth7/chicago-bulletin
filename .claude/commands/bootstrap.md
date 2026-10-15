@@ -4,7 +4,17 @@ description: Run one round of the Chicago Bulletin build loop — read the funne
 
 Run the Chicago Bulletin build loop. The repo and the DB carry all state — do not
 ask the user for context. Arguments (optional): $ARGUMENTS
-(e.g. "3 rounds", "focus Pilsen and Logan Square", "just score").
+(e.g. "3 rounds", "focus Pilsen and Logan Square", "just score", a pasted list of
+leads, or a path to a file of them).
+
+## 0. A list of leads overrides the funnel
+If the arguments contain a LIST of leads — Instagram handles copied off an events
+aggregator, venue names, URLs, one per line or comma-separated — or name a file
+holding one (e.g. `leads.txt`), that list IS this round's work, whatever the
+funnel says. Split it into batches of ~20 and spawn one **Tej** per batch in
+parallel (charter template: "Seed from a list of leads"). Then continue the round
+from step 3 (re-run the funnel and report). The next round's funnel will route
+the new source leads to Scout.
 
 ## 1. Orient
 ```
