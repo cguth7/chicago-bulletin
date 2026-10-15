@@ -22,10 +22,12 @@ from pathlib import Path
 from urllib.parse import quote_plus
 from urllib.request import Request, urlopen
 
-from models import CITY_STATE, Session, Venue
+from models import CITY_SLUG, CITY_STATE, CONTACT, Session, Venue
 
 CACHE = Path(__file__).parent / "data" / "geocode_cache.json"
-UA = "reality-events-scraper/0.1 (charliejguthmann@gmail.com)"
+# Nominatim's policy wants a UA that names the app; a contact email lets OSM
+# reach you instead of blocking you. Set "contact" in city.json.
+UA = f"{CITY_SLUG}-bulletin/0.1" + (f" ({CONTACT})" if CONTACT else "")
 SKIP = {"", "online", "tbd", "virtual", "various", "various location",
         "various locations", "multiple locations", "zoom", "n/a",
         "to be announced"}
@@ -73,6 +75,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int)
     args = ap.parse_args()
+    if not CONTACT:
+        print('note: set "contact" (your email) in city.json — Nominatim asks for one')
 
     sess = Session()
     cached, _ = apply_cache(sess)          # the free hits first, no HTTP
