@@ -22,7 +22,7 @@ echo "→ initializing the DB (idempotent — never drops anything)"
 .venv/bin/python -c "from models import init_db, DB_PATH; DB_PATH.parent.mkdir(parents=True, exist_ok=True); init_db(); print('  ', DB_PATH)"
 
 echo "→ running the test suite"
-.venv/bin/python tests.py | tail -1
+.venv/bin/python tests.py 2>&1 | tail -1
 
 echo "→ writing the (empty) site export"
 .venv/bin/python export.py >/dev/null
