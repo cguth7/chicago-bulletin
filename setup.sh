@@ -30,5 +30,5 @@ echo "→ writing the (empty) site export"
 echo
 .venv/bin/python funnel.py
 echo
-echo "Done. Next: open Claude Code in this folder and run /bootstrap."
+echo "Done. Next: open Claude Code in this folder and run /next."
 echo "View the site: python3 -m http.server 8000 -d docs  →  http://localhost:8000"

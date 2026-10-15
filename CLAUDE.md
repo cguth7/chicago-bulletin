@@ -17,7 +17,7 @@ site reads one exported file.
 - **sources/** — one doc per scraped source (Scout writes, Max appends).
 - **The seam:** `engine/export.py → docs/data.json`. The contract is
   `docs/CONTRACT.md`. Either side can be rebuilt without touching the other.
-- **The loop:** `/bootstrap` reads `engine/funnel.py` and works whichever stage
+- **The loop:** `/next` reads `engine/funnel.py` and works whichever stage
   is stuck — Tej (leads) → Scout (go/no-go) → Max (build) → Tej (vet) → Rater
   (score) → export.
 

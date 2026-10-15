@@ -2101,7 +2101,7 @@ def test_docs_truth():
     # (a) PATH POINTERS RESOLVE — conservative: skip anything that isn't
     # unambiguously a repo path (assignments, URLs, globs, prose with spaces).
     doc_files = [ROOT / "CLAUDE.md", ENG / "CLAUDE.md", ROOT / "SETUP.md",
-                 ROOT / ".claude/commands/bootstrap.md"]
+                 ROOT / ".claude/commands/next.md"]
     doc_files += [ROOT / ".claude/agents" / f"{n}.md" for n in AGENTS]
     NOT_A_PATH = re.compile(r"""[\s<>*()~?#='"|]""")
     LOOKS_LIKE_FILE = re.compile(r"\.(py|md|json|csv|geojson|db)$")
@@ -2747,7 +2747,7 @@ def test_nps_api_dates_times_expansion():
 # ── the funnel: every stage counted, the right queue named ──────────────────
 
 def test_funnel_stages_and_next_move():
-    """funnel.py is what /bootstrap steers by, so its queues must match the
+    """funnel.py is what /next steers by, so its queues must match the
     operators that move a lead between stages: no verdict → Scout; go → Max;
     built + unhealthy → Steward; visible + unscored → Rater."""
     import funnel

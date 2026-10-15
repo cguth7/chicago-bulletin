@@ -30,10 +30,10 @@ shares one copy. To put it somewhere else, edit `data_dir` in `city.json`.
 
 ```sh
 claude          # in the repo folder
-> /bootstrap
+> /next
 ```
 
-Each `/bootstrap` round reads the funnel, finds the stage where work is piling
+Each `/next` round reads the funnel, finds the stage where work is piling
 up, and spawns the right agents for it:
 
 | role | job | stage it drains |
@@ -44,13 +44,13 @@ up, and spawns the right agents for it:
 | **Rater** | scores each event (or each recurring series) on a six-part rubric | score |
 | **Steward** | re-probes built sources and reports what broke | repair |
 
-A round ends with the funnel before and after. Run `/bootstrap` again for the next
-round, or `/bootstrap 3 rounds` to let it keep going. You can steer it: `/bootstrap focus Pilsen and Hyde Park`, `/bootstrap just score`.
+A round ends with the funnel before and after. Run `/next` again for the next
+round, or `/next 3 rounds` to let it keep going. You can steer it: `/next focus Pilsen and Hyde Park`, `/next just score`.
 
 **Starting from your own list (recommended).** The best seed is a list you
 already trust. For example, copy the Instagram accounts an events aggregator
-follows or tags into `leads.txt`, one per line, then run `/bootstrap leads.txt`
-(pasting the list after `/bootstrap` works too). A list always takes priority
+follows or tags into `leads.txt`, one per line, then run `/next leads.txt`
+(pasting the list after `/next` works too). A list always takes priority
 over the funnel. Tej checks each lead against the DB, finds the venue or group
 behind each handle, and attaches its calendar. Rounds after that go through Scout,
 then Max, as usual.
@@ -86,7 +86,7 @@ Then open:
 - <http://localhost:8000/funnel.html>: where the pipeline is stuck
 - <http://localhost:8000/today.txt>: the plain-text version for assistants
 
-The site only reads the files `engine/export.py` writes into `docs/`. `/bootstrap`
+The site only reads the files `engine/export.py` writes into `docs/`. `/next`
 runs the export at the end of a round. To refresh by hand:
 `cd engine && .venv/bin/python export.py`.
 
@@ -101,7 +101,7 @@ or once a day from cron:
 ```
 
 New events from the refresh show up without a score until your next
-`/bootstrap` round scores them.
+`/next` round scores them.
 
 ## 5. Publish it (optional)
 
@@ -129,7 +129,7 @@ engine/                the engine (agents work here — see engine/CLAUDE.md)
                        Eventbrite, Localist, BiblioCommons, Wix, Luma, …)
   docs/rubric.md       how events are scored
 .claude/agents/        the five roles
-.claude/commands/      /bootstrap
+.claude/commands/      /next
 docs/                  the site (static; city.js = the site's city config)
 sources/               one doc per scraped source (Scout + Max write these)
 ```

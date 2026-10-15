@@ -10,7 +10,7 @@ counts every stage a lead moves through and names who each pile is waiting on:
   events this week         → Rater scores them
   the site                 → export.py writes docs/data.json
 
-The biggest pile is the BOTTLENECK. `next` is the stage /bootstrap should work
+The biggest pile is the BOTTLENECK. `next` is the stage /next should work
 on: the furthest-downstream non-empty queue (finish what's started before you
 start more). An empty DB says "seed".
 

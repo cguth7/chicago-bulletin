@@ -11,13 +11,13 @@ It's a fork-and-run kit. Claude Code agents do the work:
 3. **Max** builds the scrapers, which count only after a live probe passes.
 4. **Rater** scores each event.
 
-A funnel shows where the pipeline is stuck, and `/bootstrap` works whichever stage
+A funnel shows where the pipeline is stuck, and `/next` works whichever stage
 that is. The output is a SQLite DB on your machine and a static site you can open
 on localhost or publish anywhere.
 
 ```sh
 ./setup.sh                              # venv, empty DB, tests
-claude                                  # then: /bootstrap   (repeat)
+claude                                  # then: /next   (repeat)
 python3 -m http.server 8000 -d docs     # http://localhost:8000
 ```
 
