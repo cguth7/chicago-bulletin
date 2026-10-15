@@ -137,7 +137,7 @@ def compute(sess) -> dict:
     return {
         "city": CITY,
         "generated": dt.datetime.now().isoformat(timespec="seconds"),
-        "db": str(DB_PATH),
+        "db": str(DB_PATH).replace(str(Path.home()), "~", 1),   # published: no home path
         "totals": {
             "venues": len(venues), "groups": len(groups),
             "monitored": sum(1 for t in venues + groups if t.monitored),

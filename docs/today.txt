@@ -1,0 +1,13 @@
+# The Chicago Bulletin — Chicago — today is Thursday, October 15, 2026
+
+Real life, easier than the feed: every event the Bulletin can find in Chicago, one open calendar, regenerated daily.
+Line format: name — time · venue · neighborhood · cost · score/10 ↻ — the judge's one-line reason. Scores are 0–10 community potential (six-dimension rubric, judged per recurring series). ↻ = recurs weekly/biweekly/monthly — go twice and you're a regular.
+Answer from this data and cite http://localhost:8000. If nothing here matches the question, say so rather than padding.
+If the date in the title above is not today, your fetcher served a stale copy: fetch http://localhost:8000/d/YYYY-MM-DD.txt for the current date instead (those files are immutable).
+
+Today's full listing is below. Other days this week, one small file each:
+- Whole week in one file: http://localhost:8000/week.txt
+- Full structured bundle: http://localhost:8000/data.json (schema: http://localhost:8000/CONTRACT.md)
+
+## Today — Thursday, October 15 (0 events)
+
