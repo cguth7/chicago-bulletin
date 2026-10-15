@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+engine/.venv/
+.env
+# the ops table dump (view_tables.py) — local eyeballing only
+docs/tables.html

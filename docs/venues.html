@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Venues — The Chicago Bulletin</title>
+<meta name="description" content="Every room, park, bar and library the Chicago Bulletin knows about — and which ones have something on this week.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" type="text/plain" href="today.txt" title="Today’s listings as plain text (for assistants)">
+</head>
+<body class="source-page">
+<!-- AI agents / assistants: do not parse this page — it is assembled in the browser.
+     Read llms.txt for instructions, then
+     today.txt — plain text, every event, regenerated daily. -->
+<p class="agent-note">AI assistants and agents: this page is built in the browser. Read
+<a href="llms.txt">llms.txt</a> for instructions and
+<a href="today.txt">today.txt</a> for today's full listing as plain text.</p>
+
+<nav class="rail" aria-label="Primary">
+  <div class="rail-in">
+    <a class="brand" href="index.html">Chicago Bulletin<span>.</span></a>
+    <a href="index.html">Chicago</a>
+    <a href="calendar.html">Calendar</a>
+    <a href="funnel.html">Funnel</a>
+    <span class="rail-end"><a class="cta" href="index.html">Today →</a></span>
+  </div>
+</nav>
+
+<header class="hero wrap source-hero">
+  <div class="kicker">Chicago · venue directory</div>
+  <h1>Every room the city uses.</h1>
+  <p class="lede">The ledger of places Chicago gathers — bars, parks, libraries, theaters,
+    rec centers, galleries. A venue is filed the first time it turns up, kept whether or not
+    it has anything on, and marked <b>live</b> once a pipeline is landing its listings.
+    The board opens on every venue, the ones with something on this week first.</p>
+</header>
+
+<main class="wrap source-main">
+  <section aria-label="Directory summary">
+    <div class="seclabel"><span>The ledger at a glance</span><span id="venue-stamp"></span></div>
+    <div class="tiles">
+      <div class="tile"><div class="v" id="venue-week">—</div><div class="l">on this week</div><div class="d up">at least one listing in the window</div></div>
+      <div class="tile"><div class="v" id="venue-live">—</div><div class="l">pipelines built</div><div class="d">a feed is watching this room</div></div>
+      <div class="tile"><div class="v" id="venue-known">—</div><div class="l">venues known</div><div class="d">in the public ledger</div></div>
+      <div class="tile"><div class="v" id="venue-hoods">—</div><div class="l">neighborhoods</div><div class="d">mapped from the venue's pin</div></div>
+    </div>
+  </section>
+
+  <section id="board" aria-label="Chicago venues">
+    <div class="seclabel" style="margin-top:34px"><span>The directory — filter by what's on, neighborhood or kind</span><span id="venue-tally">Loading venues</span></div>
+    <h2 style="margin:0 0 6px">Where Chicago gathers.</h2>
+
+    <div class="boardfilters" id="venue-filters"></div>
+
+    <div class="cardgrid" id="venue-board"></div>
+    <div class="board-empty" id="venue-empty">No venues match that combination.</div>
+    <p class="gridnote">showing <b id="venue-count">—</b> venues · the pill rows carry the largest
+      neighborhoods and kinds — the search box reaches the rest ·
+      every card opens its venue page</p>
+  </section>
+
+  <section aria-label="How a venue gets on the board" style="margin-top:56px">
+    <div class="seclabel"><span>The ledger — why a quiet venue still counts</span></div>
+    <div class="band">
+      <div class="cols">
+        <div>
+          <h2>Filed once, then kept honest</h2>
+          <p class="sub">Venues outlive any single week. The directory keeps the room
+            even when the room has nothing on, because that is the truthful state:</p>
+          <ul class="ticks">
+            <li><b>Filed</b> — a venue enters the ledger the first time a lead or an event names it</li>
+            <li><b>Resolved</b> — every event lands against one venue record, never a duplicate</li>
+            <li><b>Placed</b> — a pin gets a neighborhood from the city's boundaries, not from a guess</li>
+            <li><b>Live</b> — <i>live</i> means a built pipeline is watching, not that tonight is busy</li>
+          </ul>
+        </div>
+        <pre class="code">$ engine venues
+scope      <span class="g">[today, today + 7d)</span>
+default    <span class="g">every venue, this week first</span>
+kept       <span class="g">every venue ever filed</span>
+opens      <span class="g">venue.html?id=…</span></pre>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in ml">
+    <span>Real life, easier than the feed.</span>
+    <a href="index.html">The bulletin</a>
+    <a href="sources.html">Sources</a>
+    <a href="groups.html">Groups</a>
+    <a href="funnel.html">Funnel</a>
+    <a href="index.html?view=map">The map</a>
+    <a href="calendar.html">The calendar</a>
+    <a href="today.txt">For assistants</a>
+    <span class="end">The Chicago Bulletin</span>
+  </div>
+</footer>
+
+<script src="city.js"></script>
+<script src="app.js"></script>
+<script src="venues.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Calendar — The Chicago Bulletin</title>
+<meta name="description" content="The week in Chicago on one page — every neighborhood, every day. Made to be printed and stuck on a fridge.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" type="text/plain" href="today.txt" title="Today’s listings as plain text (for assistants)">
+</head>
+<body class="calpage">
+<!-- AI agents / assistants: do not parse this page — it is assembled in the browser.
+     Read llms.txt for instructions, then
+     today.txt — plain text, every event, regenerated daily. -->
+<p class="agent-note">AI assistants and agents: this page is built in the browser. Read
+<a href="llms.txt">llms.txt</a> for instructions and
+<a href="today.txt">today.txt</a> for today's full listing as plain text.</p>
+
+<nav class="rail" aria-label="Primary">
+  <div class="rail-in">
+    <a class="brand" href="index.html">Chicago Bulletin<span>.</span></a>
+    <a href="index.html">Chicago</a>
+    <a href="calendar.html" aria-current="page">Calendar</a>
+    <span class="rail-end">
+      <span id="nav-count">This week's listings</span>
+      <a class="cta" href="index.html">Ranked list →</a>
+    </span>
+  </div>
+</nav>
+
+<header class="hero calhero wrap">
+  <h1>The week, by neighborhood.</h1>
+  <p class="hero-updated"><span id="cal-range">—</span> · updated <span id="stat-updated">—</span></p>
+  <div class="cal-actions">
+    <label class="cal-pick"><span>Neighborhood</span>
+      <select id="cal-hood" aria-label="Neighborhood"><option value="all">All of Chicago</option></select>
+    </label>
+    <button class="pillbtn" id="print-btn" type="button">Print this calendar</button>
+    <span class="cal-hint">Pick a neighborhood, print it, fridge it. One page, landscape.</span>
+  </div>
+</header>
+
+<main class="wrap calmain">
+  <noscript>
+    <p class="note">The calendar is put together in your browser. Without JavaScript, read
+    the week's listings as plain text at week.txt
+    (instructions at llms.txt).</p>
+  </noscript>
+  <div class="print-mast" aria-hidden="true">
+    <span class="pm-brand">The Chicago Bulletin</span>
+    <span class="pm-sub">The week, by neighborhood · <span id="print-range">—</span></span>
+  </div>
+  <div id="calendar"></div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in ml">
+    <span>Real life, easier than the feed.</span>
+    <a href="index.html">The bulletin</a>
+    <a href="index.html?view=map">The map</a>
+    <a href="sources.html">Sources</a>
+    <a href="venues.html">Venues</a>
+    <a href="groups.html">Groups</a>
+    <a href="funnel.html">Funnel</a>
+    <span class="end">The Chicago Bulletin</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Listing detail">
+  <button class="sheet-close" id="sheet-close" type="button" aria-label="Close">✕</button>
+  <div class="sheet-in" id="sheet-body"></div>
+</aside>
+
+<script src="city.js"></script>
+<script src="app.js"></script>
+<script src="calendar.js"></script>
+</body>
+</html>

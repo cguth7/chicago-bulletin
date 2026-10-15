@@ -1,0 +1,11 @@
+{
+  "city": "Chicago",
+  "city_state": "Chicago, IL",
+  "timezone": "America/Chicago",
+  "bbox": {"lat_min": 41.857, "lat_max": 41.999, "lng_min": -87.742, "lng_max": -87.598},
+  "data_dir": "~/chicago-bulletin-data",
+  "db_file": "chicago.db",
+  "site": "http://localhost:8000",
+  "site_name": "The Chicago Bulletin",
+  "hoods_geojson": "docs/hoods.geojson"
+}

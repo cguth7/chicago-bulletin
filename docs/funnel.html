@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Funnel — The Chicago Bulletin</title>
+<meta name="description" content="Where the Chicago Bulletin's pipeline is stuck: leads → scouted → built → events → scored.">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<style>
+  .fn-next{background:var(--card);border:1px solid var(--hairline);border-left:4px solid var(--green);
+    border-radius:6px;padding:16px 20px;margin:8px 0 30px}
+  .fn-next .who{font:600 20px/1.3 var(--serif);margin:2px 0 6px}
+  .fn-next ul{margin:6px 0 0;padding-left:18px;color:var(--ink-2)}
+  .fn-rows{display:grid;grid-template-columns:minmax(150px,220px) 1fr 64px;gap:6px 14px;align-items:center}
+  .fn-rows .lab{color:var(--ink-2)}
+  .fn-rows .lab.sub{padding-left:16px}
+  .fn-rows .num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .fn-bar{height:14px;background:var(--tint);border-radius:0 4px 4px 0;position:relative}
+  .fn-bar i{display:block;height:100%;background:var(--green);border-radius:0 4px 4px 0;min-width:2px}
+  .fn-wait{grid-column:2 / 4;margin:-2px 0 6px;color:var(--muted);font-size:12px}
+  .fn-wait.hot{color:var(--serious);font-weight:600}
+  .fn-q{border-top:1px solid var(--hairline);padding:10px 0}
+  .fn-q summary{cursor:pointer;display:flex;gap:12px;align-items:baseline}
+  .fn-q .n{min-width:44px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  .fn-q .tag{font-size:11px;border:1px solid var(--rule);border-radius:10px;padding:0 8px;color:var(--ink-2)}
+  .fn-q.hot .tag{border-color:var(--serious);color:var(--serious)}
+  .fn-q ul{margin:6px 0 0 56px;color:var(--ink-2)}
+  .fn-empty{color:var(--muted)}
+</style>
+</head>
+<body class="source-page">
+
+<nav class="rail" aria-label="Primary">
+  <div class="rail-in">
+    <a class="brand" href="index.html">Chicago Bulletin<span>.</span></a>
+    <a href="index.html">Chicago</a>
+    <a href="calendar.html">Calendar</a>
+    <a href="funnel.html" aria-current="page">Funnel</a>
+    <span class="rail-end"><a class="cta" href="index.html">Today →</a></span>
+  </div>
+</nav>
+
+<header class="hero wrap source-hero">
+  <div class="kicker">Chicago · the funnel</div>
+  <h1>Where is the pipeline stuck?</h1>
+  <p class="lede">Every lead moves through the same stages: Tej finds it and its calendar,
+    Scout says GO or NO-GO, Max builds the pipeline, Tej vets what aggregators turn up,
+    the Rater scores the week's events. The biggest pile is the bottleneck.
+    <span id="fn-stamp"></span></p>
+</header>
+
+<main class="wrap source-main">
+  <section aria-label="Next move">
+    <div class="seclabel"><span>Next move</span></div>
+    <div class="fn-next" id="fn-next"><span class="fn-empty">Loading funnel.json…</span></div>
+  </section>
+
+  <section aria-label="Pipeline stages">
+    <div class="seclabel"><span>The pipeline, top to bottom</span></div>
+    <div class="fn-rows" id="fn-rows"></div>
+  </section>
+
+  <section aria-label="Queues" style="margin-top:34px">
+    <div class="seclabel"><span>The queues — who each pile is waiting on</span></div>
+    <div id="fn-queues"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in ml">
+    <span>Refreshed by <code>engine/export.py</code> or <code>engine/funnel.py --write</code>.</span>
+    <a href="sources.html">Sources</a>
+    <a href="venues.html">Venues</a>
+    <a href="groups.html">Groups</a>
+    <span class="end">The Chicago Bulletin</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function $(id) { return document.getElementById(id); }
+
+  fetch('funnel.json', { cache: 'no-store' }).then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(render).catch(function () {
+    $('fn-next').innerHTML = '<span class="fn-empty">No funnel.json yet — run ' +
+      '<code>cd engine && .venv/bin/python funnel.py --write</code>.</span>';
+  });
+
+  function render(f) {
+    var t = f.totals, q = {};
+    f.queues.forEach(function (x) { q[x.stage] = x; });
+    $('fn-stamp').textContent = 'Snapshot ' + f.generated.replace('T', ' ').slice(0, 16) + '.';
+
+    // next move
+    var n = f.next;
+    $('fn-next').innerHTML = n
+      ? '<div class="kicker">' + esc(n.who) + '</div><div class="who">' + esc(n.what) +
+        (n.n ? ' (' + n.n + ')' : '') + '</div>' +
+        ((n.examples || []).length ? '<ul>' + n.examples.slice(0, 5).map(function (e) {
+          return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '')
+      : '<div class="who">Nothing queued.</div><span class="fn-empty">Seed more leads to grow, ' +
+        'or run the daily refresh (ingest → score → export).</span>';
+
+    // stage rows: one hue, bars scaled to the largest count
+    var rows = [
+      ['leads (venues + groups)', t.venues + t.groups, false, 'find a calendar'],
+      ['sources', t.sources, false, 'scout'],
+      ['NO-GO', t.no_go, true, null],
+      ['built', t.built, true, 'build'],
+      ['healthy', t.healthy, true, 'repair'],
+      ['monitored venues + groups', t.monitored, false, 'vet'],
+      ['events, next 7 days', t.events_window, false, null],
+      ['visible', t.visible, true, null],
+      ['scored', t.scored, true, 'score']
+    ];
+    var max = Math.max.apply(null, rows.map(function (r) { return r[1]; }).concat([1]));
+    $('fn-rows').innerHTML = rows.map(function (r) {
+      var w = q[r[3]], hot = w && w.n && f.bottleneck === r[3];
+      return '<div class="lab' + (r[2] ? ' sub' : '') + '">' + esc(r[0]) + '</div>' +
+        '<div class="fn-bar" title="' + esc(r[0]) + ': ' + r[1] + '"><i style="width:' +
+        (100 * r[1] / max).toFixed(1) + '%"></i></div>' +
+        '<div class="num">' + r[1] + '</div>' +
+        (w && w.n ? '<div class="fn-wait' + (hot ? ' hot' : '') + '">← ' + w.n +
+          ' waiting on ' + esc(w.who) + (hot ? '  ◀ bottleneck' : '') + '</div>' : '');
+    }).join('');
+
+    // queues, upstream → downstream
+    $('fn-queues').innerHTML = f.queues.map(function (x) {
+      var hot = x.n && f.bottleneck === x.stage;
+      return '<details class="fn-q' + (hot ? ' hot' : '') + '"' + (hot ? ' open' : '') + '>' +
+        '<summary><span class="n">' + x.n + '</span><span>' + esc(x.what) + '</span>' +
+        '<span class="tag">' + esc(x.who) + (hot ? ' · bottleneck' : '') + '</span></summary>' +
+        ((x.examples || []).length ? '<ul>' + x.examples.map(function (e) {
+          return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' : '') +
+        '</details>';
+    }).join('');
+  }
+})();
+</script>
+</body>
+</html>

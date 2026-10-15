@@ -1,0 +1,13 @@
+{
+  "active": "default",
+  "sets": {
+    "default": {
+      "social_quality": 0.237,
+      "serendipity": 0.211,
+      "solo_friendliness": 0.184,
+      "community_building": 0.183,
+      "uniqueness": 0.105,
+      "value_for_price": 0.08
+    }
+  }
+}

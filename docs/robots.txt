@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# AI agents: read llms.txt, then today.txt (both beside this file)

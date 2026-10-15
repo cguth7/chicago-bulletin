@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Groups — The Chicago Bulletin</title>
+<meta name="description" content="Every collective, club, presenter and civic group the Chicago Bulletin knows about — and how to join them.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" type="text/plain" href="today.txt" title="Today’s listings as plain text (for assistants)">
+</head>
+<body class="source-page">
+<!-- AI agents / assistants: do not parse this page — it is assembled in the browser.
+     Read llms.txt for instructions, then
+     today.txt — plain text, every event, regenerated daily. -->
+<p class="agent-note">AI assistants and agents: this page is built in the browser. Read
+<a href="llms.txt">llms.txt</a> for instructions and
+<a href="today.txt">today.txt</a> for today's full listing as plain text.</p>
+
+<nav class="rail" aria-label="Primary">
+  <div class="rail-in">
+    <a class="brand" href="index.html">Chicago Bulletin<span>.</span></a>
+    <a href="index.html">Chicago</a>
+    <a href="calendar.html">Calendar</a>
+    <a href="funnel.html">Funnel</a>
+    <span class="rail-end"><a class="cta" href="index.html">Today →</a></span>
+  </div>
+</nav>
+
+<header class="hero wrap source-hero">
+  <div class="kicker">Chicago · group directory</div>
+  <h1>Everyone who runs a night.</h1>
+  <p class="lede">The ledger of who organizes things in Chicago — presenters, clubs, collectives,
+    civic groups, promoters. A venue is where; a group is who. A group is filed the first time a
+    lead or an event names it, kept whether or not it has anything on, and marked <b>live</b>
+    once a pipeline is landing its listings. The board opens on the groups you can actually join — clubs, leagues,
+    meetups, civic associations — each with a line on what it is and a link in; presenters and
+    promoters sit behind their own pill.</p>
+</header>
+
+<main class="wrap source-main">
+  <section aria-label="Directory summary">
+    <div class="seclabel"><span>The ledger at a glance</span><span id="group-stamp"></span></div>
+    <div class="tiles">
+      <div class="tile"><div class="v" id="group-week">—</div><div class="l">on this week</div><div class="d up">at least one listing in the window</div></div>
+      <div class="tile"><div class="v" id="group-join">—</div><div class="l">groups to join</div><div class="d">clubs, leagues, meetups, civic groups</div></div>
+      <div class="tile"><div class="v" id="group-known">—</div><div class="l">groups known</div><div class="d">in the public ledger</div></div>
+      <div class="tile"><div class="v" id="group-verified">—</div><div class="l">vetted</div><div class="d">a human or agent confirmed the group</div></div>
+    </div>
+  </section>
+
+  <section id="board" aria-label="Chicago groups">
+    <div class="seclabel" style="margin-top:34px"><span>The directory — filter by kind or what's on</span><span id="group-tally">Loading groups</span></div>
+    <h2 style="margin:0 0 6px">Who Chicago gathers around.</h2>
+
+    <div class="boardfilters" id="group-filters"></div>
+
+    <div class="cardgrid" id="group-board"></div>
+    <div class="board-empty" id="group-empty">No groups match that combination.</div>
+    <p class="gridnote">showing <b id="group-count">—</b> groups · the search box reaches
+      website and kind too · every card opens its group page</p>
+  </section>
+
+  <section aria-label="How a group gets on the board" style="margin-top:56px">
+    <div class="seclabel"><span>The ledger — why a quiet group still counts</span></div>
+    <div class="band">
+      <div class="cols">
+        <div>
+          <h2>Filed once, then kept honest</h2>
+          <p class="sub">Groups outlive any single week. The directory keeps the group
+            even when it has nothing on, because that is the truthful state:</p>
+          <ul class="ticks">
+            <li><b>Filed</b> — a group enters the ledger the first time a lead or an event names it</li>
+            <li><b>Resolved</b> — every event lands against one group record, never a duplicate</li>
+            <li><b>Vetted</b> — a human or agent confirms it is real before its events go public</li>
+            <li><b>Live</b> — <i>live</i> means a built pipeline is watching, not that this week is busy</li>
+          </ul>
+        </div>
+        <pre class="code">$ engine groups
+scope      <span class="g">[today, today + 7d)</span>
+default    <span class="g">every group you can join</span>
+kept       <span class="g">every group ever filed</span>
+opens      <span class="g">group.html?id=…</span></pre>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in ml">
+    <span>Real life, easier than the feed.</span>
+    <a href="index.html">The bulletin</a>
+    <a href="sources.html">Sources</a>
+    <a href="venues.html">Venues</a>
+    <a href="index.html?view=map">The map</a>
+    <a href="calendar.html">The calendar</a>
+    <a href="today.txt">For assistants</a>
+    <span class="end">The Chicago Bulletin</span>
+  </div>
+</footer>
+
+<script src="city.js"></script>
+<script src="app.js"></script>
+<script src="groups.js"></script>
+</body>
+</html>
