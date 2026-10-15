@@ -4,7 +4,9 @@ A city event engine + a static site: every event we can find in Chicago for the
 next seven days, scored for community potential. Agents build the database; the
 site reads one exported file.
 
-- **SETUP.md** — the human instructions (install, build, view, publish).
+- **README.md** — the human instructions (install, build, view, publish).
+- **LEDGER.md** — the running log and the memory between sessions: `/next` reads
+  the last entry first and appends one when it finishes.
 - **city.json** — the whole city parameterization (name, timezone, focus bbox,
   data dir, site origin). The engine reads nothing city-specific from anywhere else.
 - **engine/** — agent territory. Read `engine/CLAUDE.md` before touching anything

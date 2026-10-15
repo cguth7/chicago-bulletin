@@ -25,7 +25,7 @@ a source that is built + `is_aggregator` but has no venue coverage with a
 to name it loudly.
 
 ## Check for a scheduled report before probing
-If the operator set up the optional weekly probe (SETUP.md), its report-only
+If the operator set up the optional weekly probe (README.md), its report-only
 output is `~/chicago-bulletin-data/steward_weekly.txt`. Read it FIRST: if it's
 fresh (check its date line), the expensive probing is already done — your job is
 to explain the drift it found and apply the honest fixes.

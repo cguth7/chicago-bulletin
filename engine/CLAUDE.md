@@ -155,7 +155,7 @@ with every city on this engine — never edit it per-batch.
 - `.venv/bin/python export.py` — refresh the site (`--out /tmp/x.json` to dry-run)
 
 `data.json` goes stale at midnight (the export windows from "today"), so a live
-site needs `../refresh.sh` once a day — see `../SETUP.md`.
+site needs `../refresh.sh` once a day — see `../README.md`.
 
 ## KISS rule
 If a feature isn't needed to answer "what's worth going to this week," don't

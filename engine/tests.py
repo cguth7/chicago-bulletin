@@ -2100,7 +2100,7 @@ def test_docs_truth():
 
     # (a) PATH POINTERS RESOLVE — conservative: skip anything that isn't
     # unambiguously a repo path (assignments, URLs, globs, prose with spaces).
-    doc_files = [ROOT / "CLAUDE.md", ENG / "CLAUDE.md", ROOT / "SETUP.md",
+    doc_files = [ROOT / "CLAUDE.md", ENG / "CLAUDE.md", ROOT / "README.md",
                  ROOT / ".claude/commands/next.md"]
     doc_files += [ROOT / ".claude/agents" / f"{n}.md" for n in AGENTS]
     NOT_A_PATH = re.compile(r"""[\s<>*()~?#='"|]""")

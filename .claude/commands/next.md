@@ -13,7 +13,7 @@ aggregator, venue names, URLs, one per line or comma-separated — or name a fil
 holding one (e.g. `leads.txt`), that list IS this round's work, whatever the
 funnel says. Split it into batches of ~20 and spawn one **Tej** per batch in
 parallel (charter template: "Seed from a list of leads"). Then continue the round
-from step 3 (re-run the funnel and report). The next round's funnel will route
+from step 3 (re-run the funnel, report, write the ledger entry). The next round's funnel will route
 the new source leads to Scout.
 
 ## 1. Orient
@@ -21,7 +21,9 @@ the new source leads to Scout.
 cd <repo>/engine && .venv/bin/python funnel.py
 ```
 If that fails because `.venv` or the DB is missing, run `../setup.sh` first.
-Read `engine/CLAUDE.md` once per session — it carries the rules.
+Read `engine/CLAUDE.md` once per session — it carries the rules — and the LAST
+entry of `LEDGER.md`: what the previous round did, decided, and left half-done.
+Honor its decisions; finish what it left off before starting something new.
 
 ## 2. Work the NEXT move the funnel names
 The funnel picks the furthest-downstream non-empty queue (finish started work
@@ -51,6 +53,9 @@ everything else defaults to Opus.
 - If visible events changed: score anything unscored, then `export.py`.
 - Run `funnel.py` again and report the before/after in a few lines: what moved,
   what's now the bottleneck, and the honest numbers (built, visible, scored).
+- Append an entry to `LEDGER.md` in the shape its header describes: Ran /
+  Funnel before → after / Decided or learned / Left off. A few lines, real
+  numbers, no padding.
 - Keep `.venv/bin/python tests.py` green if anyone touched `engine/` code (Max
   writes adapters).
 
