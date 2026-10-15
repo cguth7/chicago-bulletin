@@ -18,7 +18,7 @@ on localhost or publish anywhere.
 
 ```sh
 ./setup.sh                              # venv, empty DB, tests
-claude                                  # then: /next leads.txt, then /next (repeat)
+claude                                  # then: /next full, then /next (repeat)
 python3 -m http.server 8000 -d docs     # http://localhost:8000
 ```
 
@@ -71,7 +71,9 @@ up, and spawns the right agents for it:
 A round ends with the funnel before and after, written as a short entry in
 `LEDGER.md`. That file is the memory between sessions: the next `/next` reads it
 first, so decisions ("skip the suburbs") and half-finished work carry over. Run `/next` again for the next
-round, or `/next 3 rounds` to let it keep going. You can steer it: `/next focus Pilsen and Hyde Park`, `/next just score`.
+round, or `/next 3 rounds` to let it keep going. `/next full` pushes one
+source all the way to scored events on the site, then stops (a good first run).
+You can steer it: `/next focus Pilsen and Hyde Park`, `/next just score`.
 
 **Starting from your own list (recommended).** The best seed is a list you
 already trust. For example, copy the Instagram accounts an events aggregator
